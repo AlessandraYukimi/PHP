@@ -13,5 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//Listando cards
 Route::get('/', 'CardsController@index');
+//Criando cards
+Route::post('/', 'CardsController@create');
+//Alterando cards
+Route::put('/{id}', 'CardsController@edit');
 
