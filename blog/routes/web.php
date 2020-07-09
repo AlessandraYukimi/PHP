@@ -19,4 +19,5 @@ Route::get('/', 'CardsController@index');
 Route::post('/', 'CardsController@create');
 //Alterando cards
 Route::put('/{id}', 'CardsController@edit');
-
+//Deletando cards
+Route::delete('/{id}', 'CardsController@delete');

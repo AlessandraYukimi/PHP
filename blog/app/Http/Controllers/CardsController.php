@@ -54,6 +54,16 @@ class CardsController extends Controller
         }
     }
 
+    public function delete($id){
+        // encontrando registro pelo id atraves do metodo find
+        $card = Card::find($id);
+
+        // efetuando soft delete para nao excluir registro efetivamente e sim popular a coluna deleted_at com a data atual passando apenas a impressao para o usuario que aquele registro deixou de existir mas ainda esta em nossa base de dados
+        if($card->delete()){
+            return response()->json('Registro excluído com sucesso', 200);
+        }
+    }
+
 
     
 }
