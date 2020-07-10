@@ -15,11 +15,22 @@ class CardsController extends Controller
         // verificando se obteve registros para listar
         if ($cards) {
             // retornando resposta JSON com todos cards encontrados
-            return response()->json($cards, 200);
+            return view('cards.index')->with('cards', $cards);
         }
     }
+
+    public function add()
+    {
+        return view ('cards.create');
+    }
+
     public function create(Request $request)
     {
+        $request->validate([
+            'title'=>'required|min:5',
+            'content'=>'required|min:20'
+
+        ]);
 
         // instanciando objeto card
         $card = new Card;
@@ -34,10 +45,11 @@ class CardsController extends Controller
         // verificando se obteve registros para listar
         if ($card) {
             // retornando resposta JSON com card criado
-            return response()->json($card, 201);
+            return view('cards.create')->with('success', 'Cartão inserido com sucesso');
         }
     }
-    public function edit(Request $request, $id){
+    public function edit(Request $request, $id)
+    {
         // encontrando registro pelo id atraves do metodo find
         $card = Card::find($id);
 
@@ -48,22 +60,20 @@ class CardsController extends Controller
         $card->update();
 
         // verificando se obteve registros para listar
-        if($card){
+        if ($card) {
             // retornando resposta JSON com card criado
             return response()->json($card, 201);
         }
     }
 
-    public function delete($id){
+    public function delete($id)
+    {
         // encontrando registro pelo id atraves do metodo find
         $card = Card::find($id);
 
         // efetuando soft delete para nao excluir registro efetivamente e sim popular a coluna deleted_at com a data atual passando apenas a impressao para o usuario que aquele registro deixou de existir mas ainda esta em nossa base de dados
-        if($card->delete()){
+        if ($card->delete()) {
             return response()->json('Registro excluído com sucesso', 200);
         }
     }
-
-
-    
 }

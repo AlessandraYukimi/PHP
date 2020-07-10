@@ -16,8 +16,13 @@ use Illuminate\Support\Facades\Route;
 //Listando cards
 Route::get('/cards', 'CardsController@index');
 //Criando cards
-Route::post('/cards', 'CardsController@create');
+Route::get('/cards/add', 'CardsController@add');
+Route::post('/cards/add', 'CardsController@create');
 //Alterando cards
 Route::put('/cards/{id}', 'CardsController@edit');
 //Deletando cards
 Route::delete('/cards/{id}', 'CardsController@delete');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
