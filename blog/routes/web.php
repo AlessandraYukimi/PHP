@@ -13,15 +13,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// home
+Route::get('/', function(){
+    return view('welcome');
+});
+
 //Listando cards
 Route::get('/cards', 'CardsController@index');
+
 //Criando cards
 Route::get('/cards/add', 'CardsController@add');
 Route::post('/cards/add', 'CardsController@create');
+
 //Alterando cards
-Route::put('/cards/{id}', 'CardsController@edit');
+Route::get('/cards/update/{id}', 'CardsController@edit');
+Route::put('/cards/update/{id}', 'CardsController@update');
+
 //Deletando cards
-Route::delete('/cards/{id}', 'CardsController@delete');
+Route::delete('/cards/remove/{id}', 'CardsController@delete');
 
 Auth::routes();
 
