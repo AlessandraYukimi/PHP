@@ -32,6 +32,9 @@ Route::put('/cards/update/{id}', 'CardsController@update');
 //Deletando cards
 Route::delete('/cards/remove/{id}', 'CardsController@delete');
 
+//Pesquisando cards - filtro de busca
+Route::get('/cards/search', 'CardsController@search');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
